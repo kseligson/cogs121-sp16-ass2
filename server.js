@@ -15,6 +15,15 @@ dotenv.load();
 //connect to database
 var conString = process.env.DATABASE_CONNECTION_URL;
 
+var client = new pg.Client(conString);
+client.connect(function(err) {
+  if(err) {
+    console.error('could not connet', err);
+  }
+  else {
+    console.log("Successfully connected");
+  }
+});
 //Configures the Template engine
 app.engine('html', handlebars({ defaultLayout: 'layout', extname: '.html' }));
 app.set("view engine", "html");
@@ -43,7 +52,10 @@ app.get('/delphidata', function (req, res) {
   // for each gender. 
   // Display that data using D3 with gender on the x-axis and 
   // total respondents on the y-axis.
-  return { delphidata: "No data present." }
+  client.query("SELECT gender, number_of_respondents FROM cogs121_16_raw.cdph_smoking_prevalence_in_adults_1984_2013 WHERE year = 2003 ",function(err,dat){
+      res.json(dat.rows);
+  });
+  //return { delphidata: "No data present." }
 });
 
 
