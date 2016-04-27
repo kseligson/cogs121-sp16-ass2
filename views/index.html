@@ -1,4 +1,51 @@
-<h1>The Quest for the Best Tacos in San Diego</h1>
-<div class="chart"></div>
+
+<div class="header">
+	<div class="title">
+		<h1>San Diego Home Values</h1>
+		<hr>
+		<h5>Maximize your profits!</h5>
+	</div>
+	<div class="scroll" align="center">
+		<a href="#body">
+			<span class="glyphicon glyphicon-chevron-down"></span>
+		</a>
+	</div>
+</div>
+
+<div id="body">
+	<div class="title">
+		<h2>Select an option to see which area of San Diego has the highest value!</h2>
+	</div>
+	<div class="options row">
+		<div class="col-md-2"></div>
+		<div class="col-md-2" align="center">
+			<button type="button" class="btn dataBtn" id="totallist">Total List<br>Price</button>
+		</div>
+		<div class="col-md-2" align="center">
+			<button type="button" class="btn dataBtn" id="listsqft">List Price<br>by<br>Square Foot</button>
+		</div>
+		<div class="col-md-2" align="center">
+			<button type="button" class="btn dataBtn" id="totalsell">Total Sell<br>Price</button>
+		</div>
+		<div class="col-md-2" align="center">
+			<button type="button" class="btn dataBtn" id="sellsqft">Sell Price<br>by<br>Square Foot</button>
+		</div>
+	</div>
+	<div class="chart"></div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="./js/d3.min.js"></script>
 <script src="./js/index.js"></script>
+
+<script>
+	$('a').click(function(e) {
+		e.preventDefault();
+		if($($.attr(this, 'href')).length > 0) {
+			$('html, body').animate({
+				scrollTop: $($.attr(this, 'href')).offset().top
+			},400);
+		}
+		return false;
+	});
+</script>
